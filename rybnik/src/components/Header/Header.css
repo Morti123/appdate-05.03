@@ -2,7 +2,7 @@
 .holder_img {
     content: '';
     display: inline-block;
-    background: url(img/back/holder_fon.jpg) no-repeat 0px 0px /cover;
+    background: url(img/back/holder_fon.jpg)  no-repeat 0px 0px /cover;
     background-repeat: no-repeat;
     background-position: center;
     width: 100vw;

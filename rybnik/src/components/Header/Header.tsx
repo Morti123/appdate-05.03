@@ -10,7 +10,7 @@ const Header: React.FC = () => {
           <img src="img/icon/site_logo.png" alt="Logo" />
         </div>
         <div className="div_hover">
-          <h3 id="catalog">Каталог</h3>
+          <h3 id="catalog">Каталог </h3>
           <h3 id="contacts">Контакты</h3>
           <h3 id="offers">Предложения</h3>
           <h3 id="us">О Нас!</h3>
