@@ -1,10 +1,7 @@
 import React from 'react';
 import './Filter.css'
 import '../../components/styles/global.css'
-
-interface FilterProps {
-  filterProducts: (filter: string) => void;
-}
+import { FilterProps } from '../types/types';
 
 const Filter: React.FC<FilterProps> = ({ filterProducts }) => {
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {

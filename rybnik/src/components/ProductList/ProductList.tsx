@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import ProductCard from '../ProductCard/ProductCard';
 import Filter from '../Filter/Filter';
 import { storeProduct } from '../storeArray/storeArray';
-import { Product } from '../storeArray/storeArray';
+import { ProductListProps } from '../types/types';
+import { Product } from '../types/types';
 import '../../components/styles/global.css'
 import './ProductList.css'
-
-interface ProductListProps {
-  addToCart: (product: Product) => void;
-}
+import  Slider  from '../Slider/Slider';
 
 const ProductList: React.FC<ProductListProps> = ({ addToCart }) => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(storeProduct);
@@ -31,7 +29,7 @@ const ProductList: React.FC<ProductListProps> = ({ addToCart }) => {
                   <div className="pop-text two">Установка аквариумов</div>
                   <div className="pop-text three">Консультации</div>
                 </div>
-                {/* Слайды */}
+                {<Slider></Slider>}
               </div>
             </div>
           </div>

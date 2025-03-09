@@ -1,20 +1,7 @@
 import React from 'react';
+import { ProductCardProps } from '../types/types';
 import '../../components/styles/global.css'
 import './ProductCard.css'
-
-interface Product {
-  id: number;
-  name_prefix: string;
-  full_name: string;
-  size: string;
-  prices: string;
-  images: string;
-}
-
-interface ProductCardProps {
-  product: Product;
-  addToCart: (product: any) => void;
-}
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
   return (

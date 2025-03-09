@@ -4,7 +4,10 @@
     position: relative;
     margin: auto;
   }
-  
+  .container{
+    display: flex;
+    justify-content: space-around;
+  }
   .swiper-slide {
     display: flex;
     flex-direction: column;
