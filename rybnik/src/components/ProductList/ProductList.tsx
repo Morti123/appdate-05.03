@@ -3,8 +3,13 @@ import ProductCard from '../ProductCard/ProductCard';
 import Filter from '../Filter/Filter';
 import { storeProduct } from '../storeArray/storeArray';
 import { Product } from '../storeArray/storeArray';
-import '../../components/styles/global.css'
-import './ProductList.css'
+import '../../components/styles/global.css';
+import './ProductList.css';
+import Slider from '../Slider/Slider';
+import ClearIcon from '@mui/icons-material/Clear';
+import SearchIcon from '@mui/icons-material/Search';
+import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
 interface ProductListProps {
   addToCart: (product: Product) => void;
@@ -12,17 +17,26 @@ interface ProductListProps {
 
 const ProductList: React.FC<ProductListProps> = ({ addToCart }) => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(storeProduct);
+  const [showFilter, setShowFilter] = useState(false);
 
   const filterProducts = (filter: string) => {
-    const filtered = storeProduct.filter(product => product.name_prefix === filter);
-    setFilteredProducts(filtered);
+    if (filter === 'All') {
+      setFilteredProducts(storeProduct);
+    } else {
+      const filtered = storeProduct.filter(product => product.name_prefix === filter);
+      setFilteredProducts(filtered);
+    }
+  };
+
+  const toggleFilter = () => {
+    setShowFilter(!showFilter);
   };
 
   return (
     <div className="ocean">
       <div className="popular">
         <div className="popular_container">
-          <div className="popular-text">Наши предложения</div>
+          <div className="popular-text" id='ocean'>Наши предложения</div>
           <div className="popular_slider">
             <div className="swiper popular-slider">
               <div className="swiper-wrapper">
@@ -31,23 +45,23 @@ const ProductList: React.FC<ProductListProps> = ({ addToCart }) => {
                   <div className="pop-text two">Установка аквариумов</div>
                   <div className="pop-text three">Консультации</div>
                 </div>
-                {/* Слайды */}
+                {<Slider></Slider>}
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="i">
-        <div className="row">
-          <i className="bi-list"></i>
+      <div className="fil">
+        <Filter filterProducts={filterProducts} isVisible={showFilter} />
+        <div className="containerFor">
+          <DensityMediumIcon className='bi-list' onClick={toggleFilter} />
           <div className="block">
-            <i className="bi-search"></i>
-            <input className="field__input" type="text" placeholder="Найти" />
-            <i className="bi-x"></i>
+            <SearchIcon className='search'/>
+            <input className="field_input" type="text" placeholder="Найти" />
+            <ClearIcon className='x-circle'/>
           </div>
-          <i className="bi-cart3"></i>
+          <LocalGroceryStoreIcon className='market'/>
         </div>
-        <Filter filterProducts={filterProducts} />
       </div>
       <div className="content">
         {filteredProducts.map(product => (

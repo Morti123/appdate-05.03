@@ -22,7 +22,7 @@
     border-radius: 2vw;
   }
   
-  .div_hover h3:hover {
+  .div_hover .hover:hover {
     transition: 0.3s;
     color: white;
     background-color: rgba(1, 181, 242, 1);
@@ -47,7 +47,10 @@
     height: 3vw;
   }
   
-  .holder_container h3 {
+  .holder_container .hover {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
     transition: 0.3s;
     box-sizing: border-box;
     padding-top: 0.5vw;
@@ -56,4 +59,51 @@
     height: 100%;
     text-align: center;
     font-size: 1.5vw;
+  } 
+  @keyframes move {
+    from {
+      transform: translate(-90px, 0%);
+    }
+  
+    to {
+      transform: translate(90px, 0%);
+    }
+  }
+  
+  .holder_img svg {
+    width: 100%;
+    display: block;
+    height: 10vw;
+  }
+  
+  .holder_img svg>g>use {
+    animation: move 30s linear infinite;
+  }
+  
+  .holder_img svg>g>use:nth-child(1) {
+    animation-delay: -2s;
+    fill: rgb(255, 255, 255, 0.5);
+  }
+  
+  .holder_img svg>g>use:nth-child(2) {
+    animation-delay: -2s;
+    animation-duration: 17s;
+    fill: rgb(255, 255, 255, 0.8);
+  }
+  
+  .holder_img svg>g>use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 10s;
+    background-color: white;
+  }
+  .circleUp{
+    transform: scale(0.4);
+    color: gainsboro;
+    margin-left: 90vw;
+    margin-top: -3vw;
+    z-index: 1001;
+    position: fixed;
+  }
+  .circleUp:hover{
+    color: rgba(1, 181, 242, 1);
   }

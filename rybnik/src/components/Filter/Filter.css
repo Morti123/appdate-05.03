@@ -1,33 +1,54 @@
 /* Filter.css */
+/* Filter.css */
 .filter {
-    transition: 0.8s;
-    position: absolute;
-    left: -11vw;
-    z-index: 100;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 0.5vw;
-    flex-direction: column;
-    width: 10vw;
-    height: 30vw;
-    border-radius: 0 1vw 1vw 0;
-    background: linear-gradient(maroon, tomato, gainsboro);
-    color: white;
-    font-size: 1vw;
-    z-index: 10;
-  }
-  
-  .filter input {
-    width: 0.75vw;
-    margin-right: 0.5vw;
-  }
-  
-  .filter div {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .filter_class {
-    transition: 0.8s;
-    left: 0vw;
-  }
+  transition: all 0.3s ease-in-out;
+  position: fixed;
+  left: -15vw;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1vw;
+  flex-direction: column;
+  width: 12vw;
+  height: auto;
+  max-height: 70vh;
+  border-radius: 0 1vw 1vw 0;
+  background: linear-gradient(maroon, tomato, gainsboro);
+  color: white;
+  font-size: 1vw;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+}
+
+.filter_visible {
+  left: 0;
+}
+
+.filter input {
+  width: 0.75vw;
+  margin-right: 0.5vw;
+}
+
+.filter div {
+  display: flex;
+  align-items: center;
+  margin: 0.3vw 0;
+  padding: 0.3vw;
+  cursor: pointer;
+}
+
+.filter div:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.3vw;
+}
+
+.bi-list {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.bi-list:hover {
+  transform: scale(1.1);
+}

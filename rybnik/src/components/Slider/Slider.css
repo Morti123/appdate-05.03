@@ -1,35 +1,42 @@
 /* Slider.css */
 .slideshow-container {
-    max-width: 1000px;
-    position: relative;
-    margin: auto;
-  }
-  
-  .swiper-slide {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .swiper-text {
-    width: 300vw;
-    position: absolute;
-    display: flex;
-    margin-top: -5vw;
-  }
-  
-  .pop-text {
-    left: 0;
-    font-size: 1.8vw;
-  }
-  
-  .one {
-    margin-right: 75vw;
-  }
-  
-  .two {
-    margin-right: 78vw;
-  }
-  
-  .three {
-    margin-right: 98vw;
-  }
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+.container{
+  display: flex;
+  justify-content: space-around;
+}
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+}
+
+.swiper-text {
+  width: 300vw;
+  position: absolute;
+  display: flex;
+  margin-top: -5vw;
+}
+
+.pop-text {
+  left: 0;
+  font-size: 1.8vw;
+}
+
+.one {
+  margin-right: 75vw;
+}
+
+.two {
+  margin-right: 78vw;
+}
+
+.three {
+  margin-right: 98vw;
+}
+.cont{
+  display: flex;
+  width: 30vw;
+}
