@@ -34,9 +34,9 @@ const Footer: React.FC = () => {
           <p>Высокое качество и стабильные цены</p>
         </div>
       </div>
-      <div className="sponge">
+     {/*  <div className="sponge">
         <img src="img/back/spongeBob.png"/>
-      </div>
+      </div> */}
     </div>
   );
 };
