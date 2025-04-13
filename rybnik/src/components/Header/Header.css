@@ -32,6 +32,13 @@
     width: 16vw;
     height: 3vw;
   }
+  .profil{
+    position: absolute;
+    transform: scale(0.4);
+  }
+  .profil:hover{
+    color: gainsboro;
+  }
   
   .logo > img {
     object-fit: cover;
@@ -103,7 +110,14 @@
     margin-top: -3vw;
     z-index: 1001;
     position: fixed;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
   }
   .circleUp:hover{
     color: rgba(1, 181, 242, 1);
+  }
+  
+  .circleUp-hidden {
+    opacity: 0;
+    pointer-events: none; 
   }

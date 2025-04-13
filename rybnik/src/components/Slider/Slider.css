@@ -20,9 +20,10 @@
   margin-top: -5vw;
 }
 
-.pop-text {
-  left: 0;
-  font-size: 1.8vw;
+.popular-slide_text {
+  font-size: 1.4vw;
+  font-weight: bold;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 .one {

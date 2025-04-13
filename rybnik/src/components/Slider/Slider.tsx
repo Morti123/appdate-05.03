@@ -1,5 +1,9 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import 'swiper/swiper-bundle.css';
 import '../../components/styles/global.css'
 import './Slider.css'
@@ -7,9 +11,11 @@ import './Slider.css'
 const Slider: React.FC = () => {
   return (
     <Swiper
-    spaceBetween={20}
-    pagination={{ clickable: true }}
-    navigation >
+      modules={[Navigation, Pagination]}
+      spaceBetween={20}
+      slidesPerView={1}
+      navigation
+    >
     <SwiperSlide>
       <div className="container">
         <div className="cont">

@@ -34,8 +34,33 @@ const ProductList: React.FC = () => {
       setCartItems(JSON.parse(savedCart));
     }
   }, []);
-
+  useEffect(() => {
+    const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+    if (savedCart) {
+      try {
+        const parsedCart = JSON.parse(savedCart);
+        const restoredCart = parsedCart.map((item: any) => ({
+          ...item,
+          product: storeProduct.find(p => p.id === item.product.id) || item.product
+        }));
+        setCartItems(restoredCart);
+      } catch (error) {
+        console.error('Ошибка загрузки корзины:', error);
+        localStorage.removeItem(CART_STORAGE_KEY);
+      }
+    }
+  }, []);
+  useEffect(() => {
+    const saveCart = () => {
+      try {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+      } catch (error) {
+        console.error('Ошибка при сохранении корзины:', error);
+      }
+    };
   
+    saveCart();
+  }, [cartItems]);
   useEffect(() => {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
   }, [cartItems]);
@@ -123,12 +148,7 @@ const ProductList: React.FC = () => {
           <div className="popular_slider">
             <div className="swiper popular-slider">
               <div className="swiper-wrapper">
-                <div className="swiper-text">
-                  <div className="pop-text one">Продажа аквариумных рыб</div>
-                  <div className="pop-text two">Установка аквариумов</div>
-                  <div className="pop-text three">Консультации</div>
-                </div>
-                <Slider />
+                <Slider></Slider>
               </div>
             </div>
           </div>
