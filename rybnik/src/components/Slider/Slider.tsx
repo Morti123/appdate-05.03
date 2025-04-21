@@ -8,6 +8,7 @@ import 'swiper/swiper-bundle.css';
 import '../../components/styles/global.css'
 import './Slider.css'
 
+
 const Slider: React.FC = () => {
   return (
     <Swiper

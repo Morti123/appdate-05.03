@@ -221,7 +221,7 @@ const ProductList: React.FC = () => {
                     </button>
                   </div>
                   <div className="cart-item-price">
-                    {parseFloat(item.product.prices) * item.quantity} BYN
+                    {(parseFloat(item.product.prices) * item.quantity).toFixed(1)} BYN
                   </div>
                 </div>
               </div>
@@ -233,7 +233,7 @@ const ProductList: React.FC = () => {
 
         <div className="cart-footer">
           <div className="cart-total">
-            Итого: {calculateTotal()} BYN
+            Итого: {(calculateTotal()).toFixed(1)} BYN
           </div>
           <button 
             className="checkout-button" 
