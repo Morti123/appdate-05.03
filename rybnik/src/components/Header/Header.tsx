@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../../components/styles/global.css'
-import './Header.css'
+import { Link } from 'react-router-dom';
+import '../../components/styles/global.css';
+import './Header.css';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
@@ -15,19 +16,27 @@ const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   return (
     <div className="holder_img" id='up'>
       <div className="holder_container">
-       < AccountCircleIcon className='profil'/>
+        {/* Объединяем иконку и логотип в один блок */}
+        <div className="logo-container">
+          <Link to="/auth" className="profil-link">
+            <AccountCircleIcon className='profil' />
+          </Link>
           <div className="logo">
-            <img src="img/icon/site_logo.png" alt="Logo" />
+            <img src="/appdate-05.03/img/icon/site_logo.png" alt="Logo" />
+          </div>
         </div>
+        
         <div className="div_hover">
           <a className='hover' href="#swiper">Каталог</a>
           <a className='hover' href="#footer">Контакты</a>
           <a className='hover' href="#ocean">Предложения</a>
           <a className='hover' href="#footer">О Нас!</a>
         </div>
+        
         <a 
           className={`circleUp ${!isVisible ? 'circleUp-hidden' : ''}`} 
           href="#up"
@@ -35,6 +44,7 @@ const Header: React.FC = () => {
           <ArrowCircleUpIcon/>
         </a>
       </div>
+      
       <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 25 160 40" className="waves">
         <defs><path id="wave" d="M-150 53c30.77 0 59.538-20 90-20 31.077 0 60.256 20 90 20 30.77 0 59.23-20 90-20 30.77 0 59.23 20 90 20v20h-360z"/></defs>
         <g>

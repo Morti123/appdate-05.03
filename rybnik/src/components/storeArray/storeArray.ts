@@ -11,7 +11,7 @@ export interface Product {
     prices: string;
   }
   
-  export const storeProduct: Product[] = [
+  export let storeProduct: Product[] = [
     {
         id: 1,
         name_prefix:'Скалярия',

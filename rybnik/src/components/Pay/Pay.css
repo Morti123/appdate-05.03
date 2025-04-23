@@ -1,0 +1,80 @@
+.checkout-container {
+    padding: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .empty-cart-container {
+    padding: 24px;
+    text-align: center;
+  }
+  
+  .checkout-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .back-button {
+    margin-bottom: 16px;
+  }
+  
+  .order-summary {
+    padding: 24px;
+    margin-bottom: 24px;
+    background-color: #f9f9f9;
+  }
+  
+  .order-item {
+    padding: 12px 0;
+  }
+  
+  .order-total {
+    font-weight: bold;
+    padding: 16px 0;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .checkout-form {
+    padding: 24px;
+    background-color: #ffffff;
+  }
+  
+  .form-input {
+    margin-bottom: 16px;
+  }
+  
+  .payment-methods {
+    margin: 24px 0;
+  }
+  
+  .payment-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  
+  .payment-button {
+    flex: 1;
+  }
+  
+  .submit-button {
+    margin-top: 24px;
+    padding: 12px;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 600px) {
+    .checkout-container {
+      padding: 16px;
+    }
+    
+    .payment-buttons {
+      flex-direction: column;
+    }
+    
+    .payment-button {
+      width: 100%;
+    }
+  }

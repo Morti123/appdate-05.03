@@ -21,7 +21,7 @@ const Slider: React.FC = () => {
       <div className="container">
         <div className="cont">
       <div className="popular-slide_thumb">
-        <img src="img/fish/preview/fish_1.jpg"/>
+        <img src="/appdate-05.03/img/fish/preview/fish_1.jpg"/>
       </div>
       <div className="popular-slide_text" id='swiper'>
       Мраморный гурами 
@@ -29,7 +29,7 @@ const Slider: React.FC = () => {
       </div>
       <div className="cont">
       <div className="popular-slide_thumb">
-        <img src="img/fish/preview/fish_2.jpg"/>
+        <img src="/appdate-05.03/img/fish/preview/fish_2.jpg"/>
       </div>
       <div className="popular-slide_text">
       Скалярия кои красный дьявол 
@@ -37,7 +37,7 @@ const Slider: React.FC = () => {
       </div>
       <div className="cont">
       <div className="popular-slide_thumb">
-        <img src="img/fish/preview/fish_3.jpg"/>
+        <img src="/appdate-05.03/img/fish/preview/fish_3.jpg"/>
       </div>
       <div className="popular-slide_text">
       Снежный принц
@@ -49,7 +49,7 @@ const Slider: React.FC = () => {
     <div className="container">
       <div className="cont">
       <div className="popular-slide_thumb">
-        <img src="img/fish/preview/aquarium_1.webp"/>
+        <img src="/appdate-05.03/img/fish/preview/aquarium_1.webp"/>
       </div>
       <div className="popular-slide_text">
       Уникальный дизайн
@@ -57,7 +57,7 @@ const Slider: React.FC = () => {
       </div>
       <div className="cont">
       <div className="popular-slide_thumb">
-        <img src="img/fish/preview/aquarium_2.webp"/>
+        <img src="/appdate-05.03/img/fish/preview/aquarium_2.webp"/>
       </div>
       <div className="popular-slide_text">
       Дизайн под интерьер
@@ -65,7 +65,7 @@ const Slider: React.FC = () => {
       </div>
       <div className="cont">
       <div className="popular-slide_thumb">
-        <img src="img/fish/preview/aquarium_3.jpg"/>
+        <img src="/appdate-05.03/img/fish/preview/aquarium_3.jpg"/>
       </div>
       <div className="popular-slide_text">
       Установка на месте
@@ -77,7 +77,7 @@ const Slider: React.FC = () => {
     <div className="container">
       <div className="cont">
       <div className="popular-slide_thumb">
-        <img src="img/fish/preview/konsult_1.jpg"/>
+        <img src="/appdate-05.03/img/fish/preview/konsult_1.jpg"/>
       </div>
       <div className="popular-slide_text">
       Доступно
@@ -85,7 +85,7 @@ const Slider: React.FC = () => {
       </div>
       <div className="cont">
       <div className="popular-slide_thumb">
-        <img src="img/fish/preview/konsult_2.jpg"/>
+        <img src="/appdate-05.03/img/fish/preview/konsult_2.jpg"/>
       </div>
       <div className="popular-slide_text">
       Быстро
@@ -93,7 +93,7 @@ const Slider: React.FC = () => {
       </div>
       <div className="cont">
       <div className="popular-slide_thumb">
-        <img src="img/fish/preview/konsult_3.jpg"/>
+        <img src="/appdate-05.03/img/fish/preview/konsult_3.jpg"/>
       </div>
       <div className="popular-slide_text">
       Надёжно
