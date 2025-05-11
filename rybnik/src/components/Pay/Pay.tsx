@@ -170,6 +170,7 @@ const Checkout: React.FC = () => {
             type="submit"
             variant="contained"
             size="large"
+            onClick={() => navigate(-1)}
             fullWidth
             className="submit-button"
           >

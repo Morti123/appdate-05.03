@@ -6,19 +6,17 @@ const { Pool } = require('pg');
 
 const app = express();
 
-// Подключение к PostgreSQL
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
 
-// Middleware
+
 app.use(cors());
 app.use(express.json());
 
-// Маршруты API
 
-// Получить все продукты
 app.get('/api/products', async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM Products ORDER BY id');
@@ -29,7 +27,7 @@ app.get('/api/products', async (req, res) => {
   }
 });
 
-// Получить продукт по ID
+
 app.get('/api/products/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -46,7 +44,6 @@ app.get('/api/products/:id', async (req, res) => {
   }
 });
 
-// Поиск продуктов по названию
 app.get('/api/products/search/:query', async (req, res) => {
   try {
     const { query } = req.params;
@@ -64,7 +61,6 @@ app.get('/api/products/search/:query', async (req, res) => {
   }
 });
 
-// Фильтрация по типу рыбок
 app.get('/api/products/type/:type', async (req, res) => {
   try {
     const { type } = req.params;

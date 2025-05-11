@@ -1,14 +1,12 @@
-// src/services/productService.ts
+
 import { Product } from '../storeArray/storeArray';
 import { storeProduct } from '../storeArray/storeArray';
 
-// Функция для загрузки продуктов из БД
 export const loadProductsFromDB = async (): Promise<Product[]> => {
   try {
     const response = await fetch('/api/products');
     const data = await response.json();
     
-    // Преобразуем данные из БД в наш формат Product
     return data.map((dbProduct: any) => ({
       id: dbProduct.id,
       name_prefix: dbProduct.name_prefix,
@@ -27,18 +25,15 @@ export const loadProductsFromDB = async (): Promise<Product[]> => {
   }
 };
 
-// Функция для инициализации storeProduct
 export const initializeStoreProducts = async () => {
   const products = await loadProductsFromDB();
   storeProduct = products;
 };
 
-// Получение продукта по ID
 export const getProductById = (id: number): Product | undefined => {
   return storeProduct.find(product => product.id === id);
 };
 
-// Поиск продуктов
 export const searchProducts = (query: string): Product[] => {
   return storeProduct.filter(product => 
     product.name_prefix.toLowerCase().includes(query.toLowerCase()) ||

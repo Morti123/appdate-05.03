@@ -31,7 +31,6 @@ const ProductList: React.FC = () => {
   
   const navigate = useNavigate();
 
-  // Инициализация корзины
   useEffect(() => {
     const loadCart = () => {
       try {
@@ -43,7 +42,6 @@ const ProductList: React.FC = () => {
             throw new Error('Invalid cart format');
           }
 
-          // Восстановление полных данных о продуктах
           const restoredCart = parsedCart
             .map((item: any) => {
               const product = storeProduct.find(p => p.id === item.product?.id);
@@ -66,7 +64,6 @@ const ProductList: React.FC = () => {
     loadCart();
   }, []);
 
-  // Автосохранение корзины при изменениях
   useEffect(() => {
     try {
       localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));

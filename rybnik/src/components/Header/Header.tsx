@@ -20,7 +20,6 @@ const Header: React.FC = () => {
   return (
     <div className="holder_img" id='up'>
       <div className="holder_container">
-        {/* Объединяем иконку и логотип в один блок */}
         <div className="logo-container">
           <Link to="/auth" className="profil-link">
             <AccountCircleIcon className='profil' />
