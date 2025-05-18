@@ -1,38 +1,64 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, TextField, Typography, Box, Paper, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { 
+  Button, 
+  TextField, 
+  Typography, 
+  Box, 
+  Paper, 
+  List, 
+  ListItem, 
+  ListItemText, 
+  Divider, 
+  FormHelperText 
+} from '@mui/material';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { CartItem } from '../ProductList/ProductList';
 import './Pay.css';
+import { Link } from 'react-router-dom';
+
+
+type FormValues = {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  paymentMethod: 'card' | 'cash';
+};
 
 const Checkout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const cartItems: CartItem[] = location.state?.cartItems || [];
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-    paymentMethod: 'card',
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    setValue,
+  } = useForm<FormValues>({
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+      paymentMethod: 'card',
+    },
+    mode: 'onBlur',
   });
 
+  const paymentMethod = watch('paymentMethod');
+
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + (parseFloat(item.product.prices) * item.quantity), 0);
+    return cartItems.reduce(
+      (total, item) => total + (parseFloat(item.product.prices) * item.quantity),0);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Order submitted:', { ...formData, items: cartItems });
+  const onSubmit = (data: FormValues) => {
+    console.log('Order submitted:', { ...data, items: cartItems });
     alert('Заказ успешно оформлен!');
     navigate('/');
   };
@@ -89,7 +115,7 @@ const Checkout: React.FC = () => {
           <ListItem className="order-total">
             <ListItemText primary="Итого:" />
             <Typography variant="subtitle1">
-              {calculateTotal().toFixed(1)} BYN
+              {(calculateTotal()).toFixed(1)} BYN
             </Typography>
           </ListItem>
         </List>
@@ -99,82 +125,140 @@ const Checkout: React.FC = () => {
         <Typography variant="h6" gutterBottom>
           Данные для доставки
         </Typography>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            fullWidth
-            margin="normal"
-            label="ФИО"
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <Controller
             name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-            className="form-input"
-          />
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-            className="form-input"
-          />
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Телефон"
-            name="phone"
-            value={formData.phone}
-            onChange={handleInputChange}
-            required
-            className="form-input"
-          />
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Адрес доставки"
-            name="address"
-            value={formData.address}
-            onChange={handleInputChange}
-            required
-            multiline
-            rows={2}
-            className="form-input"
+            control={control}
+            rules={{
+              required: 'Поле обязательно для заполнения',
+              minLength: {
+                value: 3,
+                message: 'Минимум 3 символа'
+              }
+            }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                margin="normal"
+                label="ФИО"
+                error={!!errors.name}
+                helperText={errors.name?.message}
+                className="form-input"
+              />
+            )}
           />
 
-          <Box className="payment-methods">
+          <Controller
+            name="email"
+            control={control}
+            rules={{
+              required: 'Поле обязательно для заполнения',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: 'Некорректный email адрес'
+              }
+            }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                margin="normal"
+                label="Email"
+                type="email"
+                error={!!errors.email}
+                helperText={errors.email?.message}
+                className="form-input"
+              />
+            )}
+          />
+
+          <Controller
+            name="phone"
+            control={control}
+            rules={{
+              required: 'Поле обязательно для заполнения',
+              pattern: {
+                value: /^\+?[0-9]{7,15}$/,
+                message: 'Некорректный номер телефона'
+              }
+            }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                margin="normal"
+                label="Телефон"
+                error={!!errors.phone}
+                helperText={errors.phone?.message}
+                className="form-input"
+              />
+            )}
+          />
+
+          <Controller
+            name="address"
+            control={control}
+            rules={{
+              required: 'Поле обязательно для заполнения',
+              minLength: {
+                value: 10,
+                message: 'Минимум 10 символов'
+              }
+            }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                margin="normal"
+                label="Адрес доставки"
+                multiline
+                rows={2}
+                error={!!errors.address}
+                helperText={errors.address?.message}
+                className="form-input"
+              />
+            )}
+          />
+
+          <Box className="payment-methods" mt={3}>
             <Typography variant="subtitle1" gutterBottom>
               Способ оплаты
             </Typography>
             <Box className="payment-buttons">
               <Button
-                variant={formData.paymentMethod === 'card' ? 'contained' : 'outlined'}
-                onClick={() => setFormData({ ...formData, paymentMethod: 'card' })}
+                variant={paymentMethod === 'card' ? 'contained' : 'outlined'}
+                onClick={() => setValue('paymentMethod', 'card')}
                 className="payment-button"
               >
                 Картой онлайн
               </Button>
               <Button
-                variant={formData.paymentMethod === 'cash' ? 'contained' : 'outlined'}
-                onClick={() => setFormData({ ...formData, paymentMethod: 'cash' })}
+                variant={paymentMethod === 'cash' ? 'contained' : 'outlined'}
+                onClick={() => setValue('paymentMethod', 'cash')}
                 className="payment-button"
               >
                 Наличными при получении
               </Button>
             </Box>
+            {errors.paymentMethod && (
+              <FormHelperText error>
+                {errors.paymentMethod.message}
+              </FormHelperText>
+            )}
           </Box>
 
           <Button
             type="submit"
             variant="contained"
             size="large"
-            onClick={() => navigate(-1)}
             fullWidth
             className="submit-button"
-          >
+            sx={{ mt: 3 }}
+          > 
+          <Link to="/appdate-05.03" className="auth-link">
             Подтвердить заказ
+            </Link>
           </Button>
         </form>
       </Paper>

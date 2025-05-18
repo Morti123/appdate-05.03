@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { Product} from './components/storeArray/storeArray';
+import data from '../db.json';
 
 const app = express();
 const PORT = 3006;
@@ -9,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 
-const products: Product[] = require('./../data/db.json').products;
+const products: Product[] = data.products;
 
 
 app.get('/api/products', (req, res) => {
