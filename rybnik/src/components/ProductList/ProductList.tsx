@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ProductCard from '../ProductCard/ProductCard';
 import Filter from '../Filter/Filter';
 import { storeProduct } from '../storeArray/storeArray';
-import { Product } from '../storeArray/storeArray';
+import { Product } from '../methods/interfaces';
 import '../../components/styles/global.css';
 import './ProductList.css';
 import Slider from '../Slider/Slider';
@@ -13,11 +13,7 @@ import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
-
-export interface CartItem {
-  product: Product;
-  quantity: number;
-}
+import { CartItem } from '../methods/interfaces';
 
 const CART_STORAGE_KEY = 'aquarium_cart';
 

@@ -2,24 +2,7 @@ import React, { useState } from 'react';
 import '../../components/styles/global.css';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import './ProductCard.css';
-
-interface Product {
-  id: number;
-  name_prefix: string;
-  full_name: string;
-  size: string;
-  degree: string;
-  pH: string;
-  GH: string;
-  keeping_fish: string;
-  images: string;
-  prices: string;
-}
-
-interface ProductCardProps {
-  product: Product;
-  addToCart: (product: Product) => void;
-}
+import { ProductCardProps } from '../methods/interfaces';
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

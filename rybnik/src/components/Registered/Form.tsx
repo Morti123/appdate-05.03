@@ -5,11 +5,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { Link } from 'react-router-dom';
 import './Form.css';
-
-type FormData = {
-  username: string;
-  password: string;
-};
+import { FormData } from '../methods/interfaces';
 
 const fakeAuthAPI = {
   login: async (username: string, password: string) => {
@@ -125,7 +121,7 @@ const AuthForm: React.FC = () => {
         />
 
         <Box className="auth-link-container">
-          <Link to="/appdate-05.03" className="auth-link">
+          <Link to="/appdate-05.03"className="auth-link">
             <Button variant="outlined" fullWidth className="auth-home-button">
               На главную
             </Button>

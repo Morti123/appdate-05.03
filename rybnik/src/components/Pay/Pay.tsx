@@ -15,18 +15,10 @@ import {
 } from '@mui/material';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { CartItem } from '../ProductList/ProductList';
+import { CartItem } from '../methods/interfaces';
 import './Pay.css';
 import { Link } from 'react-router-dom';
-
-
-type FormValues = {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  paymentMethod: 'card' | 'cash';
-};
+import { FormValues } from '../methods/interfaces';
 
 const Checkout: React.FC = () => {
   const location = useLocation();

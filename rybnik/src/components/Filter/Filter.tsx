@@ -2,11 +2,7 @@
 import React from 'react';
 import './Filter.css';
 import '../../components/styles/global.css';
-
-interface FilterProps {
-  filterProducts: (filter: string) => void;
-  isVisible: boolean;
-}
+import {FilterProps} from '../methods/interfaces'
 
 const Filter: React.FC<FilterProps> = ({ filterProducts, isVisible }) => {
   const categories = ['All', 'Скалярия', 'Снежный принц','Анциструс',"Данио","Хаплохромис","Креветки","Тернеция","Попугай","Гуппи","Гурами","Ампулярия","Барбус"];

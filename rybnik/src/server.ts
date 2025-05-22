@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { Product} from './components/storeArray/storeArray';
+import { Product } from './components/methods/interfaces';
 import data from '../db.json';
 
 const app = express();
