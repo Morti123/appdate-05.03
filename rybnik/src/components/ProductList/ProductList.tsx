@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../ProductCard/ProductCard';
 import Filter from '../Filter/Filter';
@@ -12,7 +11,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import CloseIcon from '@mui/icons-material/Close';
-import { useNavigate } from 'react-router-dom';
 import { CartItem } from '../methods/interfaces';
 
 const CART_STORAGE_KEY = 'aquarium_cart';
@@ -22,50 +20,28 @@ const ProductList: React.FC = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showCart, setShowCart] = useState(false);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [cartError, setCartError] = useState<string | null>(null);
-  
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const loadCart = () => {
-      try {
-        const savedCart = localStorage.getItem(CART_STORAGE_KEY);
-        if (savedCart) {
-          const parsedCart = JSON.parse(savedCart);
-          
-          if (!Array.isArray(parsedCart)) {
-            throw new Error('Invalid cart format');
-          }
-
-          const restoredCart = parsedCart
-            .map((item: any) => {
-              const product = storeProduct.find(p => p.id === item.product?.id);
-              return product 
-                ? { product, quantity: item.quantity }
-                : null;
-            })
-            .filter((item: CartItem | null): item is CartItem => item !== null);
-
-          setCartItems(restoredCart);
-        }
-      } catch (error) {
-        console.error('Ошибка загрузки корзины:', error);
-        setCartError('Не удалось загрузить корзину');
-        localStorage.removeItem(CART_STORAGE_KEY);
-        setCartItems([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    try {
+      const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+      if (savedCart) {
+        const parsedCart = JSON.parse(savedCart);
+        return parsedCart.map((item: any) => ({
+          ...item,
+          product: storeProduct.find(p => p.id === item.product.id) || item.product
+        }));
       }
-    };
-
-    loadCart();
-  }, []);
+    } catch (error) {
+      console.error('Ошибка загрузки корзины:', error);
+      localStorage.removeItem(CART_STORAGE_KEY);
+    }
+    return [];
+  });
 
   useEffect(() => {
     try {
       localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
     } catch (error) {
-      console.error('Ошибка сохранения корзины:', error);
-      setCartError('Не удалось сохранить корзину');
+      console.error('Ошибка при сохранении корзины:', error);
     }
   }, [cartItems]);
 
@@ -146,13 +122,6 @@ const ProductList: React.FC = () => {
 
   return (
     <div className="ocean">
-      {cartError && (
-        <div className="error-notification">
-          {cartError}
-          <button onClick={() => setCartError(null)}>×</button>
-        </div>
-      )}
-
       <div className="popular">
         <div className="popular_container">
           <div className="popular-text" id='ocean'>Наши предложения</div>
@@ -244,12 +213,11 @@ const ProductList: React.FC = () => {
 
         <div className="cart-footer">
           <div className="cart-total">
-            Итого: {(calculateTotal()).toFixed(1)} BYN
+            Итого: {calculateTotal().toFixed(1)} BYN
           </div>
           <button 
             className="checkout-button" 
             disabled={cartItems.length === 0}
-            onClick={() => navigate('/checkout', { state: { cartItems } })}
           >
             Оформить заказ
           </button>
@@ -276,6 +244,3 @@ const ProductList: React.FC = () => {
 };
 
 export default ProductList;
-
-
-
